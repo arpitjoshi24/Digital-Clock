@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-purple-500 text-white">
+    <section >
+        <h1 class="text-center text-5xl mt-16">Digital clock</h1>
+        <div class="flex justify-center">
+
+            <div class="m-12 border-2 text-center bg-blue-600 border-black">
+                <div id="clock" class="bg-white text-black m-12 border-2 px-24 py-12 text-4xl"></div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        let updateClock = () => {
+            let date = new Date();
+            let hour = date.getHours();
+            let min = date.getMinutes();
+            let sec = date.getSeconds();
+            let am_pm = hour >= 12 ? 'PM' : 'AM';
+             hour = hour % 12;
+             hour = hour ? hour : 12; 
+            let formattedTime = hour + ":" + min + ":"  + sec;
+            let clockElement = document.querySelector('#clock');
+            clockElement.innerText = formattedTime;
+        };
+
+        let second = () => {
+            updateClock();
+            setTimeout(second, 1000);
+        };
+
+        second();
+    </script>
+</body>
+</html>
